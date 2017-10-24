@@ -88,9 +88,10 @@ public class Sistema extends Observable {
         setChanged();
         notifyObservers(evento);
     }
+    /*
     public void abrirMesa(IMesa mesaSeleccionada) {
        avisar(Sistema.Eventos.abrirMesa);
-    }
+    }*/
     public void cerrarrMesa(IMesa mesaSeleccionada) {
         avisar(Sistema.Eventos.cerrarMesa);
     }

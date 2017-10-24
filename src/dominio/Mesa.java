@@ -65,7 +65,10 @@ public class Mesa implements IMesa{
     @Override
     public void abrirMesa() throws RestaurantException{
         if(this.abierta) throw new RestaurantException("Mesa ya abierta!");
-        else abierta = true;
+        else{
+            abierta = true;
+            Sistema.getInstancia().avisar(Sistema.Eventos.abrirMesa);
+        }
     }
 
     @Override

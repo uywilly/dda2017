@@ -44,11 +44,11 @@ public class ControladorMozo implements Observer{
     }
     
     public void abrirMesa() {
-        if(mesaSeleccionada !=null && !mesaSeleccionada.estaAbierta()){
+        if(mesaSeleccionada !=null){
             try{ 
                 mesaSeleccionada.abrirMesa();
                 // mover aviso al abrir 
-                modelo.abrirMesa(mesaSeleccionada);
+                //modelo.abrirMesa(mesaSeleccionada);
             }catch (RestaurantException ex){
                 vista.error(ex.getMessage());
             }  
