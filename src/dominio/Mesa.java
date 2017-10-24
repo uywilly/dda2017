@@ -11,7 +11,8 @@ import java.util.ArrayList;
  *
  * @author william
  */
-public class Mesa implements IMesa{
+public class Mesa implements IMesa {
+
     private int numero;
     private boolean abierta;
     private Mozo mozo;
@@ -28,11 +29,10 @@ public class Mesa implements IMesa{
         this.numero = numero;
     }
 
-
     public void setMozo(Mozo mozo) {
         this.mozo = mozo;
     }
-    
+
     @Override
     public int verNumero() {
         return this.numero;
@@ -51,8 +51,8 @@ public class Mesa implements IMesa{
     @Override
     public int calcularTotalServicio() {
         int salida = 0;
-        for(Pedido unP : this.servicio){
-            salida+=unP.getCantidad()*unP.getProducto().getPrecioUni();
+        for (Pedido unP : this.servicio) {
+            salida += unP.getCantidad() * unP.getProducto().getPrecioUni();
         }
         return salida;
     }
@@ -63,19 +63,27 @@ public class Mesa implements IMesa{
     }
 
     @Override
-    public void abrirMesa() throws RestaurantException{
-        if(this.abierta) throw new RestaurantException("Mesa ya abierta!");
-        else{
+    public void abrirMesa() throws RestaurantException {
+        if (this.abierta) {
+            throw new RestaurantException("Mesa ya abierta!");
+        } else {
             abierta = true;
             Sistema.getInstancia().avisar(Sistema.Eventos.abrirMesa);
         }
     }
 
     @Override
-    public void cerrarMesa() throws RestaurantException{
-        if(!this.hayPedidosSinFinalizar()){
+    public void cerrarMesa() throws RestaurantException {
+        if (!this.abierta) {
+            throw new RestaurantException("La mesa no esta abierta!");
+        }
+        if (!this.hayPedidosSinFinalizar()) {
             abierta = false;
-        }else throw new RestaurantException("La mesa tiene pedidos abiertos!");
+            Sistema.getInstancia().avisar(Sistema.Eventos.cerrarMesa);
+        } else {
+            throw new RestaurantException("La mesa tiene pedidos abiertos!");
+        }
+
     }
 
     @Override
@@ -85,8 +93,8 @@ public class Mesa implements IMesa{
 
     @Override
     public void agregarPedido(Pedido unP) {
-        if(this.estaAbierta()){
-            if(unP.isValido()){
+        if (this.estaAbierta()) {
+            if (unP.isValido()) {
                 this.servicio.add(unP);
                 int stock = unP.getProducto().getStock();
                 int cantidad = unP.getCantidad();
@@ -97,11 +105,12 @@ public class Mesa implements IMesa{
     }
 
     private boolean hayPedidosSinFinalizar() {
-        for(Pedido unP : this.servicio){
-            if(!unP.isFinalizado()) return true;
+        for (Pedido unP : this.servicio) {
+            if (!unP.isFinalizado()) {
+                return true;
+            }
         }
         return false;
     }
-    
-    
+
 }

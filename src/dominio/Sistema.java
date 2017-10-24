@@ -88,13 +88,7 @@ public class Sistema extends Observable {
         setChanged();
         notifyObservers(evento);
     }
-    /*
-    public void abrirMesa(IMesa mesaSeleccionada) {
-       avisar(Sistema.Eventos.abrirMesa);
-    }*/
-    public void cerrarrMesa(IMesa mesaSeleccionada) {
-        avisar(Sistema.Eventos.cerrarMesa);
-    }
+
     public void agregarPedido(Pedido unP) throws RestaurantException {
         supp.agregarPedido(unP);
         avisar(Sistema.Eventos.agregarPedido);
