@@ -27,15 +27,14 @@ public class SistemaTransferencias {
         }else return null;
     }
 
-
     public void agregarTransferenciaPendiente(Transferencia trans) throws RestaurantException{
         if(trans.isValida())transferenciasPendientes.add(trans);
         else throw new RestaurantException("Destino = Origen");
         
-    }
+    }/*
     public void agregarTransferenciaRespondidas(Transferencia trans) {
         transferenciasRespondidas.add(trans);
-    }
+    }*/
 
     public Transferencia verTransferenciasPendientesPorMozo(Mozo m) {
         for(Transferencia t:transferenciasPendientes){
@@ -46,36 +45,13 @@ public class SistemaTransferencias {
         }
         return null;
     }
-    void aceptarTransferencia(Transferencia trans) {
-        trans.setAceptada(true);
+    public void aceptarTransferencia(Transferencia trans) {
         transferenciasPendientes.remove(trans);
         transferenciasRespondidas.add(trans);
-        IMesa m = trans.getMesa();
-        trans.getOrigen().getMesas().remove(m);
-        trans.getDestino().getMesas().add(m);
-        m.setMozo(trans.getDestino());
-        
     }
-    void rechazarTransferencia(Transferencia trans) {
+    public void rechazarTransferencia(Transferencia trans) {
         transferenciasPendientes.remove(trans);
-        //transferenciasRespondidas.add(trans);
     }
-    
-//    public ArrayList<Transferencia> verTransferenciasPendientesPorMozo(Mozo m) {
-//        ArrayList<Transferencia> salida = new ArrayList<>();
-//        for(Transferencia t:transferenciasPendientes){
-//            Mozo destino = t.getDestino();
-//            if(destino.equals(m)){
-//                salida.add(t);
-//            }
-//        }
-//        return salida;
-//    }
-//    
-
-    
-
-    
     
     
 }

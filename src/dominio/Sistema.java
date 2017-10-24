@@ -83,6 +83,15 @@ public class Sistema extends Observable {
         //return st.getTransferenciasPendientes().get(0);
         return st.verTransferenciasPendientes();
     }
+    public void agregarTransferenciaEnProceso(Transferencia trans) throws RestaurantException{
+        st.agregarTransferenciaPendiente(trans); 
+    }
+    public void aceptarTransferenciaEnProceso(Transferencia trans) throws RestaurantException{
+        st.aceptarTransferencia(trans); 
+    }
+    public void rechazarTransferenciaEnProceso(Transferencia trans){
+        st.rechazarTransferencia(trans); 
+    }
     ////////////////////////////////AVISOS////////////////////////////////
     public void avisar(Object evento) {
         setChanged();
@@ -95,17 +104,15 @@ public class Sistema extends Observable {
     }
     
     public void transferir(Transferencia trans) throws RestaurantException{
-        st.agregarTransferenciaPendiente(trans);
-        avisar(Sistema.Eventos.comenzarTransferencia);
+        trans.comenzarTransferencia();
     }
-    public void aceptarTransferencia(Transferencia trans) {
-        st.aceptarTransferencia(trans);
-        avisar(Sistema.Eventos.aceptarTransferencia);
+    public void aceptarTransferencia(Transferencia trans) throws RestaurantException{
+        trans.aceptada();
     }
     public void rechazarTransferencia(Transferencia trans) {
-        st.rechazarTransferencia(trans);
-        avisar(Sistema.Eventos.rechazarTransferencia);
+        trans.rechazada();
     }
+
     public void procesarPedido(Gestor ges, Pedido p) {
         supp.procesarPedido(ges,p);
         avisar(Sistema.Eventos.procesarPedido);

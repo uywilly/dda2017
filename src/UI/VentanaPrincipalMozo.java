@@ -90,11 +90,13 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     public void actualizarMesas(Mozo mozo) {
         panelMesas.mostrar(mozo.getMesas());
     }
+    
     @Override
     public void limpiar() {
         panelInfoServicios.limpiar();
 
     }
+    
     @Override
     public void agregarPedido(IMesa mesaSeleccionada) {
         new VentanaAgregarPedido(mesaSeleccionada).setVisible(true);

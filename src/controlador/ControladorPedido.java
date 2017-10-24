@@ -37,6 +37,7 @@ public class ControladorPedido implements Observer{
 
     public void agregarPedido(Producto prod, int cantidad) throws RestaurantException {
         Pedido unP = new Pedido(cantidad,prod);
+        // DUDA!!!!
         modelo.agregarPedido(unP, mesaSeleccionada);
         //mesaSeleccionada.agregarPedido(unP);
     }

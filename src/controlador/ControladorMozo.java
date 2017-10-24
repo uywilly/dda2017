@@ -78,16 +78,16 @@ public class ControladorMozo implements Observer {
     public void comenzarTransferenciaMesa(IMesa mesaSeleccionada) throws RestaurantException {
         //Le pide a VentanaPrincipalMozo 
         //que abra la ventana de transferencia
-        if (mesaSeleccionada != null) {
-            this.mesaSeleccionada = mesaSeleccionada;
-            vista.transferirMesa(mesaSeleccionada);
-        } else {
-            throw new RestaurantException("Debe seleccionar una mesa!");
+        if (mesaSeleccionada == null) throw new RestaurantException("Debe seleccionar una mesa!"); 
+        else{
+                this.mesaSeleccionada = mesaSeleccionada;
+                vista.transferirMesa(mesaSeleccionada);
         }
     }
 
     public void aceptarTransferencia(Transferencia trans) {
-        modelo.aceptarTransferencia(trans);
+        try{ modelo.aceptarTransferencia(trans);}
+        catch (RestaurantException ex){vista.error(ex.getMessage());}
     }
 
     public void rechazarTransferencia(Transferencia trans) {
@@ -136,11 +136,13 @@ public class ControladorMozo implements Observer {
                 //toma la primer transferencia pendiente 
                 //y le pide a la viste que le muestra el mensaje al mozo origen
                 vista.actualizarMesas(origen);
-                vista.limpiar();
+                
                 if (mesaSeleccionada != null && !mesaSeleccionada.verMozo().equals(origen)) {
                     vista.mostrarMensajeMesaAceptada();
+                    vista.limpiar();
                     mesaSeleccionada = null;
                 }
+                
 
             }
             if (arg.equals(Sistema.Eventos.rechazarTransferencia)) {

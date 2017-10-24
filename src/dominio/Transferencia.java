@@ -59,6 +59,29 @@ public class Transferencia{
     public boolean isValida() {
         return !this.origen.equals(this.destino);
     }
+
+    public void aceptada() throws RestaurantException{
+        this.aceptada = true;
+        this.getOrigen().getMesas().remove(this.mesa);
+        this.getDestino().getMesas().add(this.mesa);
+        mesa.setMozo(destino);
+        Sistema.getInstancia().aceptarTransferenciaEnProceso(this);
+        Sistema.getInstancia().avisar(Sistema.Eventos.aceptarTransferencia);
+
+    }
+
+    public void rechazada() {
+        this.aceptada = false;
+        Sistema.getInstancia().rechazarTransferenciaEnProceso(this);
+        Sistema.getInstancia().avisar(Sistema.Eventos.rechazarTransferencia);
+    }
+
+    public void comenzarTransferencia() throws RestaurantException{
+        if(this.isValida()){
+            Sistema.getInstancia().agregarTransferenciaEnProceso(this);
+            Sistema.getInstancia().avisar(Sistema.Eventos.comenzarTransferencia);
+        }else throw new RestaurantException("Eror origen = destino");
+    }
     
     
     

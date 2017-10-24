@@ -142,6 +142,7 @@ public class PanelInfoServicio extends javax.swing.JPanel {
             mesaSeleccionada = null;
             txtMesaSeleccionada.setText("");
             lstServiciosMesa.removeAll();
+            
     }
 
     private void abrirMesa() {
