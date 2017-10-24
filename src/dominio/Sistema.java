@@ -89,14 +89,9 @@ public class Sistema extends Observable {
         notifyObservers(evento);
     }
 
-    public void agregarPedido(Pedido unP) throws RestaurantException {
-        supp.agregarPedido(unP);
-        avisar(Sistema.Eventos.agregarPedido);
-    }
     public void agregarPedido(Pedido unP, IMesa mesaSeleccionada) throws RestaurantException {
-        supp.agregarPedido(unP);
-        su.agregarPedido(unP,mesaSeleccionada);
-        avisar(Sistema.Eventos.agregarPedido);
+        //experto la mesa
+        mesaSeleccionada.agregarPedido(unP);
     }
     
     public void transferir(Transferencia trans) throws RestaurantException{

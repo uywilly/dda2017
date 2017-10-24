@@ -63,12 +63,6 @@ public class SistemaUnidadProcesadora {
         
     }
 
-    void agregarPedido(Pedido unP) throws RestaurantException {
-        UnidadProcesadora unaU = unP.getProducto().getUpp();
-        unaU.agregarPedido(unP);
-        
-    }
-
     boolean hayPedidosNoFinalizadosDeMozo(Mozo m) {
         boolean salida = false;
         for(IMesa unaM : m.getMesas()){

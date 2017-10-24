@@ -58,12 +58,6 @@ public class SistemaUsuario {
         if(salida==null) throw new RestaurantException("Error al ingresar");
         return salida;
     }
-    
-    void agregarPedido(Pedido unP, IMesa mesaSeleccionada) {
-        Mozo m = mesaSeleccionada.verMozo();
-        m.agregarPedidoMesa(unP,mesaSeleccionada);
-    }
-    
     public ArrayList<Pedido> verPedidosPorGestorEnUnidadProcesadora(UnidadProcesadora u, Gestor g) {
         ArrayList<Pedido> salida = new ArrayList<>();
         for (Gestor gest : gestoresLogueados) {

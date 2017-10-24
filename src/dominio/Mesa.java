@@ -92,16 +92,17 @@ public class Mesa implements IMesa {
     }
 
     @Override
-    public void agregarPedido(Pedido unP) {
+    public void agregarPedido(Pedido unP) throws RestaurantException{
         if (this.estaAbierta()) {
             if (unP.isValido()) {
                 this.servicio.add(unP);
                 int stock = unP.getProducto().getStock();
                 int cantidad = unP.getCantidad();
                 unP.getProducto().setStock(stock - cantidad);
+                unP.getProducto().getUpp().agregarPedido(unP);
                 Sistema.getInstancia().avisar(Sistema.Eventos.agregarPedido);
-            }
-        }
+            }else throw new RestaurantException("Pedido con errores");
+        }else throw new RestaurantException("La mesa esta cerrada");
     }
 
     private boolean hayPedidosSinFinalizar() {

@@ -19,7 +19,7 @@ public interface IMesa {
     public void setMozo(Mozo unM);
     public Mozo verMozo();
     public ArrayList<Pedido> listarServicio();
-    public void agregarPedido(Pedido unP);
+    public void agregarPedido(Pedido unP)throws RestaurantException;
     public int calcularTotalServicio();
     
 }

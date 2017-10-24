@@ -20,7 +20,7 @@ import vista.VistaPedido;
 public class VentanaAgregarPedido extends javax.swing.JFrame implements VistaPedido{
     
     private ControladorPedido controlador;
-    private IMesa mesaSeleccionada;
+    //private IMesa mesaSeleccionada;
     /**
      * Creates new form VentanaAgregarProducto
      */
@@ -30,8 +30,8 @@ public class VentanaAgregarPedido extends javax.swing.JFrame implements VistaPed
 
     VentanaAgregarPedido(IMesa mesaSeleccionada) {
         initComponents();
-        this.controlador = new ControladorPedido(this);
-        this.mesaSeleccionada = mesaSeleccionada;
+        this.controlador = new ControladorPedido(this, mesaSeleccionada);
+
         controlador.cargarProductos();  
     }
 
@@ -95,7 +95,7 @@ public class VentanaAgregarPedido extends javax.swing.JFrame implements VistaPed
         int cantidad = Integer.parseInt(txtCantidad.getText());
         Producto prod = (Producto) lstProductos.getSelectedValue();
         try{ 
-            controlador.agregarPedido(prod,cantidad,mesaSeleccionada);
+            controlador.agregarPedido(prod,cantidad);
             this.dispose();
         }catch(RestaurantException ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());          

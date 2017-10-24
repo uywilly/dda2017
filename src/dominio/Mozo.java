@@ -23,10 +23,6 @@ public class Mozo extends Usuario{
         return mesas;
     }
 
-    public void agregarPedidoMesa(Pedido unP, IMesa mesaSeleccionada) {
-        mesaSeleccionada.agregarPedido(unP);
-    }
-
     public ArrayList<IMesa> getMesasAbiertas() {
         ArrayList<IMesa> salida = new ArrayList<IMesa>();
         for(IMesa unaM : this.mesas){

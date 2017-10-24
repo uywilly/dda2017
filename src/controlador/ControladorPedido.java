@@ -25,8 +25,9 @@ public class ControladorPedido implements Observer{
     private IMesa mesaSeleccionada;
     private VistaPedido vista;
 
-    public ControladorPedido(VistaPedido vista) {
+    public ControladorPedido(VistaPedido vista, IMesa mesa) {
         this.vista = vista;
+        this.mesaSeleccionada = mesa;
         modelo.addObserver(this);
     }
 
@@ -34,7 +35,7 @@ public class ControladorPedido implements Observer{
         vista.cargarProductos(modelo.listarProductos());
     }
 
-    public void agregarPedido(Producto prod, int cantidad, IMesa mesaSeleccionada) throws RestaurantException {
+    public void agregarPedido(Producto prod, int cantidad) throws RestaurantException {
         Pedido unP = new Pedido(cantidad,prod);
         modelo.agregarPedido(unP, mesaSeleccionada);
         //mesaSeleccionada.agregarPedido(unP);
