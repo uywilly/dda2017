@@ -10,6 +10,7 @@ import dominio.IMesa;
 import dominio.Pedido;
 import dominio.RestaurantException;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -141,8 +142,9 @@ public class PanelInfoServicio extends javax.swing.JPanel {
     public void limpiar() {
             mesaSeleccionada = null;
             txtMesaSeleccionada.setText("");
-            lstServiciosMesa.removeAll();
-            
+            //lstServiciosMesa.removeAll();
+            lstServiciosMesa.setListData(new ArrayList<Object>().toArray());
+
     }
 
     private void abrirMesa() {
