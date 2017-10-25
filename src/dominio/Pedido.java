@@ -61,7 +61,7 @@ public class Pedido {
     }
 
     public boolean isValido() {
-        return (this.cantidad <= this.producto.getStock());
+        return (this.producto.getStock() >=this.cantidad );
     }
     
     

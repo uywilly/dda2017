@@ -28,7 +28,9 @@ public class Sistema extends Observable {
     public static Sistema getInstancia() {return instancia;}
     /////////////////fin del singleton///////////////// 
 
-    
+    public void cargarDatosPrueba() {
+        su.cargarDatosPrueba();
+    }
     public Mozo loginMozo(String nombre, String clave) throws RestaurantException {
         return su.loginMozo(nombre, clave);
     }
@@ -49,11 +51,7 @@ public class Sistema extends Observable {
     public boolean logout(Mozo m) {
         return su.logoutMozo(m);
     }
-    
-    public void cargarDatosPrueba() {
-        su.cargarDatosPrueba();
-    }
-    
+
     ////////////////acceso a listados////////////////
     public ArrayList<Producto> listarProductos(){
         return sp.getProductos();
@@ -90,9 +88,9 @@ public class Sistema extends Observable {
     public void rechazarTransferenciaEnProceso(Transferencia trans){
         st.rechazarTransferencia(trans); 
     }
-   
+    ////////////////acceso a listados////////////////
 
-////////////////////////////////AVISOS////////////////////////////////
+    ////////////////////////////AVISOS////////////////////////////////
     public void avisar(Object evento) {
         setChanged();
         notifyObservers(evento);
@@ -115,6 +113,6 @@ public class Sistema extends Observable {
     public void finalizarPedido(Gestor ges, Pedido p) {
         ges.finalizarPedido(p);
     }    
-    ////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
 
 }

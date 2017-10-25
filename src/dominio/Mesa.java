@@ -79,6 +79,7 @@ public class Mesa implements IMesa {
         }
         if (!this.hayPedidosSinFinalizar()) {
             abierta = false;
+            this.servicio.clear();
             Sistema.getInstancia().avisar(Sistema.Eventos.cerrarMesa);
         } else {
             throw new RestaurantException("La mesa tiene pedidos abiertos!");
@@ -98,8 +99,8 @@ public class Mesa implements IMesa {
                 this.servicio.add(unP);
                 int stock = unP.getProducto().getStock();
                 int cantidad = unP.getCantidad();
-                unP.getProducto().setStock(stock - cantidad);
                 unP.getProducto().getUpp().agregarPedido(unP);
+                unP.getProducto().setStock(stock - cantidad);
                 Sistema.getInstancia().avisar(Sistema.Eventos.agregarPedido);
             }else throw new RestaurantException("Pedido con errores");
         }else throw new RestaurantException("La mesa esta cerrada");
