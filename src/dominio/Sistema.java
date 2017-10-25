@@ -18,9 +18,7 @@ public class Sistema extends Observable {
     private SistemaProductos sp = new SistemaProductos();
     private SistemaTransferencias st = new SistemaTransferencias();
     private SistemaUnidadProcesadora supp = new SistemaUnidadProcesadora();
-
     
-
     public enum Eventos {
         abrirMesa, cerrarMesa, agregarPedido, comenzarTransferencia, aceptarTransferencia, rechazarTransferencia, procesarPedido, cerrarPedido};
 
@@ -92,17 +90,16 @@ public class Sistema extends Observable {
     public void rechazarTransferenciaEnProceso(Transferencia trans){
         st.rechazarTransferencia(trans); 
     }
-    ////////////////////////////////AVISOS////////////////////////////////
+   
+
+////////////////////////////////AVISOS////////////////////////////////
     public void avisar(Object evento) {
         setChanged();
         notifyObservers(evento);
     }
-
     public void agregarPedido(Pedido unP, IMesa mesaSeleccionada) throws RestaurantException {
-        //experto la mesa
         mesaSeleccionada.agregarPedido(unP);
     }
-    
     public void transferir(Transferencia trans) throws RestaurantException{
         trans.comenzarTransferencia();
     }
@@ -111,17 +108,13 @@ public class Sistema extends Observable {
     }
     public void rechazarTransferencia(Transferencia trans) {
         trans.rechazada();
-    }
-
+    }  
     public void procesarPedido(Gestor ges, Pedido p) {
-        supp.procesarPedido(ges,p);
-        avisar(Sistema.Eventos.procesarPedido);
+        ges.procesarPedido(p);  
     }
     public void finalizarPedido(Gestor ges, Pedido p) {
-        supp.finalizarPedido(ges,p);
-        avisar(Sistema.Eventos.cerrarPedido);
-    }
-    
+        ges.finalizarPedido(p);
+    }    
     ////////////////////////////////////////////////////////////////
 
 }

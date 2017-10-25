@@ -49,20 +49,6 @@ public class SistemaUnidadProcesadora {
         }
         return salida;
     }
-
-    public void procesarPedido(Gestor ges, Pedido p) {
-        ges.getPedidosProcesados().add(p);
-        UnidadProcesadora u = p.getProducto().getUpp();
-        u.getPedidos().remove(p);
-        
-    }
-    public void finalizarPedido(Gestor ges, Pedido p) {
-        p.setFinalizado(true);
-        ges.getPedidosFinalizados().add(p);
-        ges.getPedidosProcesados().remove(p);
-        
-    }
-
     boolean hayPedidosNoFinalizadosDeMozo(Mozo m) {
         boolean salida = false;
         for(IMesa unaM : m.getMesas()){

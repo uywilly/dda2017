@@ -39,5 +39,19 @@ public class Gestor extends Usuario{
     public void setLogueadoEn(UnidadProcesadora logueadoEn) {
         this.logueadoEn = logueadoEn;
     }
+
+    public void procesarPedido(Pedido p) {
+        this.pedidosProcesados.add(p);
+        UnidadProcesadora u = p.getProducto().getUpp();
+        u.getPedidos().remove(p);
+        Sistema.getInstancia().avisar(Sistema.Eventos.procesarPedido);
+    }
+
+    public void finalizarPedido(Pedido p) {
+        p.setFinalizado(true);
+        this.pedidosFinalizados.add(p);
+        this.pedidosProcesados.remove(p);
+        Sistema.getInstancia().avisar(Sistema.Eventos.cerrarPedido);
+    }
     
 }

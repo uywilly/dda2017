@@ -112,6 +112,7 @@ public class ControladorMozo implements Observer {
                 //mandar a la vista que hacer
                 vista.actualizarMesas(origen);
                 vista.mostrarMesa(mesaSeleccionada);
+                vista.limpiar();
             }
             if (arg.equals(Sistema.Eventos.agregarPedido)) {
                 //mandar a la vista que hacer
