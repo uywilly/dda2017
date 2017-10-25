@@ -37,5 +37,7 @@ public interface VistaMozo {
     public void mostrarMensajeTransferenciaRechazada();
 
     public void limpiar();
+
+    public void nombreEnVentana(Mozo origen);
     
 }

@@ -40,11 +40,11 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     
     public VentanaPrincipalMozo(Mozo m) {
         initComponents();
-        this.setTitle(m.getNombre());
+        
         
         controlador = new ControladorMozo(this,m);
         this.elMozo = m;
-        
+        controlador.nombreEnVentana();
         panelMesas = new PanelMesas(m, controlador);
         panelInfoServicios = new PanelInfoServicio(controlador);
         GridLayout layout = new GridLayout(2,0);
@@ -141,6 +141,11 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     @Override
     public void error(String message) {
         JOptionPane.showMessageDialog(this, message);
+    }
+
+    @Override
+    public void nombreEnVentana(Mozo origen) {
+        this.setTitle(origen.getNombreCompleto());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

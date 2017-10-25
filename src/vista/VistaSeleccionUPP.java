@@ -6,6 +6,8 @@
 package vista;
 
 import dominio.Gestor;
+import dominio.UnidadProcesadora;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,5 +16,7 @@ import dominio.Gestor;
 public interface VistaSeleccionUPP {
 
     public void ingresarUPP(Gestor g);
+
+    public void cargarLista(ArrayList<UnidadProcesadora> lista);
     
 }

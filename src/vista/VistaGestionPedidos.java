@@ -5,6 +5,7 @@
  */
 package vista;
 
+import dominio.Gestor;
 import dominio.Pedido;
 import java.util.ArrayList;
 
@@ -19,5 +20,7 @@ public interface VistaGestionPedidos {
     public void cargarPedidosEnProcesoPorGestor(ArrayList<Pedido> verPedidosPorGestorEnUnidadProcesadora);
 
     public void refrescarPantalla();
+
+    public void nombreEnVentana(Gestor g);
     
 }

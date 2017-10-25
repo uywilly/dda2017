@@ -8,6 +8,7 @@ package UI;
 import controlador.ControladorSeleccionUPP;
 import dominio.Gestor;
 import dominio.UnidadProcesadora;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vista.VistaSeleccionUPP;
 
@@ -20,19 +21,17 @@ public class VentanaUPP extends javax.swing.JFrame implements VistaSeleccionUPP{
     /**
      * Creates new form VentanaUPP
      */
-    private Gestor g;
+    //private Gestor g;
     private ControladorSeleccionUPP controlador;
     
     public VentanaUPP() {
         initComponents();
-        controlador = new ControladorSeleccionUPP(this);
-        
     }
     public VentanaUPP(Gestor g) {
         initComponents();
-        controlador = new ControladorSeleccionUPP(this);
-        this.g = g;
-        lstUPP.setListData(controlador.listarUPP().toArray());
+        controlador = new ControladorSeleccionUPP(this,g);
+        controlador.cargarLista();
+        
     }
 
     /**
@@ -71,7 +70,7 @@ public class VentanaUPP extends javax.swing.JFrame implements VistaSeleccionUPP{
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
         UnidadProcesadora u = (UnidadProcesadora)lstUPP.getSelectedValue();
         if(u!= null){
-            controlador.ingresar(g,u); 
+            controlador.ingresar(u); 
         }else{
             JOptionPane.showMessageDialog(this, "Debe seleccionar una UPP");
         }
@@ -89,5 +88,10 @@ public class VentanaUPP extends javax.swing.JFrame implements VistaSeleccionUPP{
     public void ingresarUPP(Gestor g) {
         new VentanaPrincipalGestor(g).setVisible(true);
         dispose();    
+    }
+
+    @Override
+    public void cargarLista(ArrayList<UnidadProcesadora> lista) {
+        lstUPP.setListData(lista.toArray());
     }
 }

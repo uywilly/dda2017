@@ -84,6 +84,10 @@ public class ControladorUnidadProcesadora implements Observer{
         }
     }
 
+    public void nombreEnVentana() {
+        vista.nombreEnVentana(unG);
+    }
+
     
 
     

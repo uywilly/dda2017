@@ -18,18 +18,24 @@ import vista.VistaSeleccionUPP;
 public class ControladorSeleccionUPP {
     private Sistema modelo = Sistema.getInstancia();
     private VistaSeleccionUPP vista;
+    private Gestor unG;
 
-    public ControladorSeleccionUPP(VistaSeleccionUPP vista) {
+    public ControladorSeleccionUPP(VistaSeleccionUPP vista, Gestor g) {
         this.vista = vista;
+        unG = g;
     }
 
     public ArrayList<UnidadProcesadora> listarUPP() {
        return modelo.verUnidadesProcesadoras();
     }
 
-    public void ingresar(Gestor g, UnidadProcesadora u) {
-        g.setLogueadoEn(u);
-        vista.ingresarUPP(g);
+    public void ingresar(UnidadProcesadora u) {
+        unG.setLogueadoEn(u);
+        vista.ingresarUPP(unG);
+    }
+
+    public void cargarLista() {
+        vista.cargarLista(listarUPP());
     }
     
     

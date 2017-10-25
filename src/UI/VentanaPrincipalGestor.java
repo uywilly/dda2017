@@ -29,7 +29,8 @@ public class VentanaPrincipalGestor extends javax.swing.JFrame implements VistaG
     public VentanaPrincipalGestor(Gestor g) {
         initComponents();
         controlador = new ControladorUnidadProcesadora(this,g);
-        this.setTitle(g.getNombreCompleto());
+        controlador.nombreEnVentana();
+        
         this.cargarDatosIniciales();
 
     }
@@ -144,6 +145,11 @@ public class VentanaPrincipalGestor extends javax.swing.JFrame implements VistaG
     @Override
     public void refrescarPantalla() {
         this.cargarDatosIniciales();
+    }
+
+    @Override
+    public void nombreEnVentana(Gestor g) {
+        this.setTitle(g.getNombreCompleto());
     }
 
     

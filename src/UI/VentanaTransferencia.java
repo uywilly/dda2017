@@ -25,7 +25,6 @@ public class VentanaTransferencia extends javax.swing.JFrame implements VistaTra
      */
     private ControladorTransferencia controlador;
     private Mozo origen;
-    private IMesa mesaSeleccionada; 
     
     public VentanaTransferencia() {
         initComponents();
@@ -34,7 +33,6 @@ public class VentanaTransferencia extends javax.swing.JFrame implements VistaTra
     VentanaTransferencia(IMesa mesaSeleccionada) {
         initComponents();
         this.origen = mesaSeleccionada.verMozo();
-        this.mesaSeleccionada = mesaSeleccionada;
         this.controlador = new ControladorTransferencia(this,origen,mesaSeleccionada);
         controlador.cargarMozosLogueados();
     }

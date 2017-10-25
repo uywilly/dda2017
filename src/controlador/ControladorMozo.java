@@ -98,6 +98,9 @@ public class ControladorMozo implements Observer {
         boolean b = modelo.logout(origen);
         vista.cerrar(b, origen);
     }
+    public void nombreEnVentana() {
+        vista.nombreEnVentana(origen);
+    }
 
     @Override
     public void update(Observable o, Object arg) {
@@ -157,5 +160,7 @@ public class ControladorMozo implements Observer {
 
         }
     }
+
+    
 
 }
