@@ -21,5 +21,5 @@ public class TareaRestaurant {
         VentanaInicio v = new VentanaInicio();
     	v.setVisible(true);
     }
-    
+    //comentario
 }
