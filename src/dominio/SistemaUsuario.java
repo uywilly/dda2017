@@ -15,6 +15,7 @@ public class SistemaUsuario {
 
     private ArrayList<Mozo> mozos = new ArrayList();
     private ArrayList<Gestor> gestores = new ArrayList();
+    private ArrayList<Cliente> clientes = new ArrayList();
 
     private ArrayList<Mozo> mozosLogueados = new ArrayList();
     private ArrayList<Gestor> gestoresLogueados = new ArrayList();
@@ -29,6 +30,9 @@ public class SistemaUsuario {
 
     public ArrayList<Mozo> getMozos() {
         return mozos;
+    }
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
     }
 
     public ArrayList<Mozo> getGestores() {

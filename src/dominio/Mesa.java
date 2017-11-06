@@ -16,6 +16,7 @@ public class Mesa implements IMesa {
     private int numero;
     private boolean abierta;
     private Mozo mozo;
+    private Cliente cliente;
     private ArrayList<Pedido> servicio;
     private int oid;
 
@@ -53,8 +54,11 @@ public class Mesa implements IMesa {
     public int calcularTotalServicio() {
         int salida = 0;
         for (Pedido unP : this.servicio) {
+            //cliente.calcularDescuentoProducto(unP)
             salida += unP.getCantidad() * unP.getProducto().getPrecioUni();
         }
+        //int descuento = cliente.calcularDescuentoTotal(salida);
+        //salida -= descuento;
         return salida;
     }
 
