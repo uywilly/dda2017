@@ -17,6 +17,7 @@ public class Producto {
     private int stock;
     private UnidadProcesadora upp;
     private int precioUni;
+    private int oid;
 
     public Producto(String nombre, String codigo, int stock, UnidadProcesadora upp, int precioUni) {
         this.nombre = nombre;

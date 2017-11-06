@@ -17,6 +17,7 @@ public class Mesa implements IMesa {
     private boolean abierta;
     private Mozo mozo;
     private ArrayList<Pedido> servicio;
+    private int oid;
 
     public Mesa(int numero, boolean abierta, Mozo mozo) {
         this.numero = numero;

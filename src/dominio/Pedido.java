@@ -14,6 +14,7 @@ public class Pedido {
     private int cantidad;
     private Producto producto;
     private boolean finalizado;
+    private int oid;
 
     public Pedido(int cantidad, Producto p) {
         this.nombre = p.getNombre();

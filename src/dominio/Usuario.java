@@ -15,6 +15,7 @@ public class Usuario {
     private String nombre; 
     private String clave;
     private String nombreCompleto;
+    private int oid;
 
     public Usuario(String nombre, String clave, String nombreCompleto) {
         this.nombre = nombre;
@@ -46,6 +47,15 @@ public class Usuario {
         this.nombreCompleto = nombreCompleto;
     }
 
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 5;
