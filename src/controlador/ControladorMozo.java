@@ -101,6 +101,9 @@ public class ControladorMozo implements Observer {
     public void nombreEnVentana() {
         vista.nombreEnVentana(origen);
     }
+    public void asignarClienteMesa() {
+        vista.mostrarClientesRegistrados(modelo.verClientesRegistrados(), mesaSeleccionada);
+    }
 
     @Override
     public void update(Observable o, Object arg) {

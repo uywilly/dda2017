@@ -91,6 +91,9 @@ public class SistemaUsuario {
             }
         return salida;
     }
+    public ArrayList<Cliente> verClientesRegistrados() {
+        return this.clientes;
+    }
     
     public void logoutGestor(Gestor ges) {
         this.gestoresLogueados.remove(ges);
@@ -186,6 +189,8 @@ public class SistemaUsuario {
         */
        
     }
+
+
 
     
 

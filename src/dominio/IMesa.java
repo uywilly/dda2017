@@ -21,5 +21,6 @@ public interface IMesa {
     public ArrayList<Pedido> listarServicio();
     public void agregarPedido(Pedido unP)throws RestaurantException;
     public int calcularTotalServicio();
+    public void asignarClienteSeleccionado(Cliente unC) throws RestaurantException;
     
 }

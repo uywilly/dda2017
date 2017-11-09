@@ -5,6 +5,7 @@
  */
 package vista;
 
+import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mozo;
 import dominio.Pedido;
@@ -39,5 +40,7 @@ public interface VistaMozo {
     public void limpiar();
 
     public void nombreEnVentana(Mozo origen);
+
+    public void mostrarClientesRegistrados(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada);
     
 }

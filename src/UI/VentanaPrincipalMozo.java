@@ -6,6 +6,7 @@
 package UI;
 
 import controlador.ControladorMozo;
+import dominio.Cliente;
 import dominio.IMesa;
 import dominio.Mozo;
 import dominio.Pedido;
@@ -72,7 +73,7 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
         });
         getContentPane().setLayout(null);
 
-        setBounds(0, 0, 520, 800);
+        setBounds(0, 0, 656, 800);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -146,6 +147,11 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     @Override
     public void nombreEnVentana(Mozo origen) {
         this.setTitle(origen.getNombreCompleto());
+    }
+
+    @Override
+    public void mostrarClientesRegistrados(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada) {
+        new VentanaAsignacionCliente(verClientesRegistrados,mesaSeleccionada).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

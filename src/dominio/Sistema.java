@@ -18,9 +18,11 @@ public class Sistema extends Observable {
     private SistemaProductos sp = new SistemaProductos();
     private SistemaTransferencias st = new SistemaTransferencias();
     private SistemaUnidadProcesadora supp = new SistemaUnidadProcesadora();
-    
+
     public enum Eventos {
-        abrirMesa, cerrarMesa, agregarPedido, comenzarTransferencia, aceptarTransferencia, rechazarTransferencia, procesarPedido, cerrarPedido};
+        abrirMesa, cerrarMesa, agregarPedido, 
+        comenzarTransferencia, aceptarTransferencia, 
+        rechazarTransferencia, procesarPedido, cerrarPedido};
 
     /////////////////Singleton/////////////////
     private static Sistema instancia = new Sistema();
@@ -51,6 +53,10 @@ public class Sistema extends Observable {
     public boolean logout(Mozo m) {
         return su.logoutMozo(m);
     }
+    
+    public void asignarClienteSeleccionadoMesa(IMesa mesaSeleccionada, Cliente unC) throws RestaurantException {
+        mesaSeleccionada.asignarClienteSeleccionado(unC);
+    }
 
     ////////////////acceso a listados////////////////
     public ArrayList<Producto> listarProductos(){
@@ -70,6 +76,9 @@ public class Sistema extends Observable {
     }
     public ArrayList<Pedido> verPedidosCompletadosPorGestor(Gestor g){
         return su.verPedidosCompletadosPorGestor(g);
+    }
+    public ArrayList<Cliente> verClientesRegistrados(){
+        return su.verClientesRegistrados();
     }
     public Transferencia verTransferenciasPendientesPorMozo(Mozo m){
         return st.verTransferenciasPendientesPorMozo(m);

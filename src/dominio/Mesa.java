@@ -119,4 +119,10 @@ public class Mesa implements IMesa {
         return false;
     }
 
+    @Override
+    public void asignarClienteSeleccionado(Cliente unC) throws RestaurantException {
+        if(unC!=null) this.cliente = unC;
+        else throw new RestaurantException("cliente no valido");
+    }
+
 }
