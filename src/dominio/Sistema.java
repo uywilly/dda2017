@@ -22,7 +22,7 @@ public class Sistema extends Observable {
     public enum Eventos {
         abrirMesa, cerrarMesa, agregarPedido, 
         comenzarTransferencia, aceptarTransferencia, 
-        rechazarTransferencia, procesarPedido, cerrarPedido};
+        rechazarTransferencia, procesarPedido, cerrarPedido, clienteAgregado};
 
     /////////////////Singleton/////////////////
     private static Sistema instancia = new Sistema();

@@ -17,7 +17,7 @@ public class TipoClientePreferencial extends TipoCliente{
 
     @Override
     public void setProductoConDescuento(Producto productoConDescuento) throws RestaurantException{
-        if(productoConDescuento.getNombre().equalsIgnoreCase("agua mineral")) this.setProductoConDescuento(productoConDescuento);
+        if(productoConDescuento.getNombre().equalsIgnoreCase("agua mineral")) super.setProductoConDescuento(productoConDescuento);
         else throw new RestaurantException("producto incorrecto");
     }
     
@@ -25,7 +25,7 @@ public class TipoClientePreferencial extends TipoCliente{
     public int calcularDescuentoProducto(Pedido unP) {
         int retorno = 0;
         if(unP.getProducto().equals(this.getProductoConDescuento())){
-            retorno = unP.getCantidad() * unP.getProducto().getPrecioUni();
+            retorno = (unP.getCantidad() * unP.getProducto().getPrecioUni())*this.getDescuentoXproducto()/100;
         }
         return retorno;
     }

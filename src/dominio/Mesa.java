@@ -53,10 +53,18 @@ public class Mesa implements IMesa {
     @Override
     public int calcularTotalServicio() {
         int salida = 0;
+        int descuentoTotal = 0;
         for (Pedido unP : this.servicio) {
-            salida += (unP.getCantidad() * unP.getProducto().getPrecioUni()) - cliente.calcularDescuentoProducto(unP);
+            if(cliente!=null){
+               salida += (unP.getCantidad() * unP.getProducto().getPrecioUni()) - cliente.calcularDescuentoProducto(unP);
+
+            }else{
+                salida += (unP.getCantidad() * unP.getProducto().getPrecioUni());
+            }
         }
-        int descuentoTotal = cliente.calcularDescuentoTotal(salida);
+        if(cliente!=null){
+            descuentoTotal = cliente.calcularDescuentoTotal(salida);
+        }
         salida -= descuentoTotal;
         return salida;
     }
@@ -84,6 +92,7 @@ public class Mesa implements IMesa {
         if (!this.hayPedidosSinFinalizar()) {
             abierta = false;
             this.servicio.clear();
+            this.cliente = null;
             Sistema.getInstancia().avisar(Sistema.Eventos.cerrarMesa);
         } else {
             throw new RestaurantException("La mesa tiene pedidos abiertos!");
@@ -121,7 +130,10 @@ public class Mesa implements IMesa {
 
     @Override
     public void asignarClienteSeleccionado(Cliente unC) throws RestaurantException {
-        if(unC!=null) this.cliente = unC;
+        if(unC!=null) {
+            this.cliente = unC;
+            Sistema.getInstancia().avisar(Sistema.Eventos.clienteAgregado);
+        }
         else throw new RestaurantException("cliente no valido");
     }
 
