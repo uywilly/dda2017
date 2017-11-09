@@ -11,11 +11,41 @@ package dominio;
  */
 public abstract class TipoCliente {
     private String nombreTipo;
+    private Producto productoConDescuento;
+    private int descuentoXproducto;
+    private int descuentoXtotal;
 
-    public TipoCliente(String nombreTipo) {
+    public TipoCliente(String nombreTipo, int descuentoXproducto, int descuentoXtotal) {
         this.nombreTipo = nombreTipo;
+        this.descuentoXproducto = descuentoXproducto;
+        this.descuentoXtotal = descuentoXtotal;
+        this.productoConDescuento = null;
     }
 
+    public Producto getProductoConDescuento() {
+        return productoConDescuento;
+    }
+
+    public void setProductoConDescuento(Producto productoConDescuento) throws RestaurantException {
+        this.productoConDescuento = productoConDescuento;
+    }
+
+    public int getDescuentoXproducto() {
+        return descuentoXproducto;
+    }
+
+    public void setDescuentoXproducto(int descuentoXproducto) {
+        this.descuentoXproducto = descuentoXproducto;
+    }
+
+    public int getDescuentoXtotal() {
+        return descuentoXtotal;
+    }
+
+    public void setDescuentoXtotal(int descuentoXtotal) {
+        this.descuentoXtotal = descuentoXtotal;
+    }
+    
     public String getNombreTipo() {
         return nombreTipo;
     }

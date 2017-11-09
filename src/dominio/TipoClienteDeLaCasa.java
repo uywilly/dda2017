@@ -11,18 +11,22 @@ package dominio;
  */
 public class TipoClienteDeLaCasa extends TipoCliente{
 
-    public TipoClienteDeLaCasa(String nombreTipo) {
-        super(nombreTipo);
+    public TipoClienteDeLaCasa(String nombreTipo, int descuentoXproducto, int descuentoXtotal) {
+        super(nombreTipo, descuentoXproducto, descuentoXtotal);
     }
+
+    
 
     @Override
     public int calcularDescuentoProducto(Pedido unP) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int descuento = 0;
+        if(this.getProductoConDescuento()!= null) return descuento;
+        return descuento;
     }
 
     @Override
     public int calcularDescuentoTotal(int subtotal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 500;
     }
     
 }

@@ -54,11 +54,10 @@ public class Mesa implements IMesa {
     public int calcularTotalServicio() {
         int salida = 0;
         for (Pedido unP : this.servicio) {
-            //cliente.calcularDescuentoProducto(unP)
-            salida += unP.getCantidad() * unP.getProducto().getPrecioUni();
+            salida += (unP.getCantidad() * unP.getProducto().getPrecioUni()) - cliente.calcularDescuentoProducto(unP);
         }
-        //int descuento = cliente.calcularDescuentoTotal(salida);
-        //salida -= descuento;
+        int descuentoTotal = cliente.calcularDescuentoTotal(salida);
+        salida -= descuentoTotal;
         return salida;
     }
 

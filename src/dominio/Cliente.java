@@ -44,5 +44,12 @@ public class Cliente extends Usuario{
     public void setTipo(TipoCliente tipo) {
         this.tipo = tipo;
     }
+    public int calcularDescuentoProducto(Pedido unP) {
+        return tipo.calcularDescuentoProducto(unP);
+    }
+
+    public int calcularDescuentoTotal(int subtotal) {
+        return tipo.calcularDescuentoTotal(subtotal);
+    }
     
 }
