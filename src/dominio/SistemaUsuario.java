@@ -166,7 +166,7 @@ public class SistemaUsuario {
         m1.getMesas().add(new Mesa(4,false,m1));
         m1.getMesas().add(new Mesa(5,false,m1));
         
-        Mozo m2 = new Mozo("2", "2", "Ana Lopez Mozo");
+        Mozo m2 = new Mozo("11", "11", "Ana Lopez Mozo");
         m2.getMesas().add(new Mesa(1,false,m2));
         m2.getMesas().add(new Mesa(2,false,m2));
         

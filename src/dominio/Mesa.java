@@ -19,12 +19,15 @@ public class Mesa implements IMesa {
     private Cliente cliente;
     private ArrayList<Pedido> servicio;
     private int oid;
+    
+
 
     public Mesa(int numero, boolean abierta, Mozo mozo) {
         this.numero = numero;
         this.abierta = abierta;
         this.mozo = mozo;
         servicio = new ArrayList<Pedido>();
+        
     }
 
     public void setNumero(int numero) {

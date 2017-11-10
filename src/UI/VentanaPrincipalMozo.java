@@ -26,6 +26,7 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     
     private PanelMesas panelMesas;
     private PanelInfoServicio panelInfoServicios;
+    private VentanaMensajeAceptarTransferencia ventanaMensaje;
     
     private ControladorMozo controlador;
     private Mozo elMozo;
@@ -110,16 +111,12 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
 
     @Override
     public void mostrarMensajeTransferenciaPendiente(Transferencia trans) {
-        int opcion = JOptionPane.showConfirmDialog(this,
-                        "Transferencia de mesa "
-                        + trans.getMesa().toString(),
-                        "Seleccione una opcion",
-                        JOptionPane.YES_NO_OPTION);
-                if (opcion == JOptionPane.YES_OPTION) {
-                    controlador.aceptarTransferencia(trans);
-                } else {
-                    controlador.rechazarTransferencia(trans);
-                }
+        // reemplazar por una nueva ventana
+        ventanaMensaje = new VentanaMensajeAceptarTransferencia(controlador, trans);
+        ventanaMensaje.setVisible(true); 
+                
+                
+
     }
     @Override
     public void cerrar(boolean logout, Mozo origen) {
@@ -133,10 +130,14 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     @Override
     public void mostrarMensajeMesaAceptada() {
         JOptionPane.showMessageDialog(this, "Se ha aceptado la transferencia!");
+        ventanaMensaje = null;
     }
     @Override
     public void mostrarMensajeTransferenciaRechazada() {
+        ventanaMensaje.dispose();
         JOptionPane.showMessageDialog(this, "No se ha aceptado la transferencia!");
+        ventanaMensaje = null;
+        
     }
 
     @Override
@@ -152,6 +153,15 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     @Override
     public void mostrarClientesRegistrados(ArrayList<Cliente> verClientesRegistrados, IMesa mesaSeleccionada) {
         new VentanaAsignacionCliente(verClientesRegistrados,mesaSeleccionada).setVisible(true);
+    }
+
+    @Override
+    public void actualizarTimer(Transferencia trans) {
+        //System.out.println("Entra mas adentro " + trans.getTiempo());
+        if(ventanaMensaje!=null) 
+        {
+            ventanaMensaje.actualizarTimer(trans.getTiempo());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -144,6 +144,14 @@ public class ControladorMozo implements Observer {
                 }
 
             }
+            if (arg.equals(Sistema.Eventos.tiempo)) {
+                //toma la primer transferencia pendiente 
+                //y le pide a la viste que le muestra el mensaje al mozo destino
+                Transferencia trans = modelo.verTransferenciasPendientes();
+                if (trans != null ) {
+                    vista.actualizarTimer(trans);
+                }
+            }
             if (arg.equals(Sistema.Eventos.aceptarTransferencia)) {
                 //toma la primer transferencia pendiente 
                 //y le pide a la viste que le muestra el mensaje al mozo origen
@@ -168,7 +176,6 @@ public class ControladorMozo implements Observer {
 
         }
     }
-
     
 
 }
