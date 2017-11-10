@@ -5,6 +5,9 @@
  */
 package dominio;
 
+import Mapeadores.MapeadorUPP;
+import Persistencia.BaseDatos;
+import Persistencia.Persistencia;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -130,8 +133,19 @@ public class SistemaUsuario {
 
     public void cargarDatosPrueba() {
         // TODO Auto-generated method stub
-        UnidadProcesadora u1 = new UnidadProcesadora("Cocina");
-        UnidadProcesadora u2 = new UnidadProcesadora("Bar");
+        /*String strConn = "jdbc:mysql://localhost/tarea";
+        BaseDatos bd = BaseDatos.getInstancia();
+        bd.conectar(strConn, "root", "root");
+        Persistencia p = new Persistencia();
+        MapeadorUPP mupp = new MapeadorUPP();
+        partidas = p.obtenerTodos(mp);
+        bd.desconectar();
+        */
+        
+        
+        
+        UnidadProcesadora u1 = new UnidadProcesadora("teatro");
+        UnidadProcesadora u2 = new UnidadProcesadora("cine");
         Sistema.getInstancia().verUnidadesProcesadoras().add(u1);
         Sistema.getInstancia().verUnidadesProcesadoras().add(u2);
         

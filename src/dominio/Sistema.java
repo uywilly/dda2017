@@ -33,6 +33,10 @@ public class Sistema extends Observable {
 
     public void cargarDatosPrueba() {
         su.cargarDatosPrueba();
+        supp.cargarDatosPrueba();
+        sp.cargarDatosPrueba();
+        
+        
     }
     public Mozo loginMozo(String nombre, String clave) throws RestaurantException {
         return su.loginMozo(nombre, clave);

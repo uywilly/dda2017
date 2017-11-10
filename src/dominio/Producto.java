@@ -34,6 +34,14 @@ public class Producto {
         this.precioUni = 0;
     }
 
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
+    }
+
     
     public String getCodigo() {
         return codigo;

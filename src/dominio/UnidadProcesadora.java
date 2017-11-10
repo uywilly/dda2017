@@ -15,6 +15,7 @@ import java.util.Objects;
 public class UnidadProcesadora {
     private String nombre;
     private ArrayList<Pedido> pedidos;
+    private int oid;
 
     public UnidadProcesadora(){
         this.nombre = "";
@@ -24,12 +25,25 @@ public class UnidadProcesadora {
         this.nombre = nombre;
         pedidos = new ArrayList<>();
     }
+    public UnidadProcesadora(String nombre, int oid){
+        this.nombre = nombre;
+        this.oid = oid;
+        pedidos = new ArrayList<>();
+    }
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
     }
     
     public ArrayList<Pedido> getPedidos() {
