@@ -34,14 +34,6 @@ public class SistemaProductos {
         MapeadorProductos mp = new MapeadorProductos();
         productos = p.obtenerTodos(mp);
         
-        
-        //String strConn = "jdbc:mysql://localhost:8889/tarea";
-        //BaseDatos bd = BaseDatos.getInstancia();
-        //bd.conectar(strConn, "root", "root");
-        //Persistencia p = new Persistencia();
-        //MapeadorProductos mp = new MapeadorProductos();
-        //productos = p.obtenerTodos(mp);
-        //bd.desconectar();
     }
     
     

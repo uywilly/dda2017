@@ -5,6 +5,9 @@
  */
 package dominio;
 
+import Mapeadores.MapeadorProductos;
+import Mapeadores.MapeadorServicio;
+import Persistencia.Persistencia;
 import java.util.ArrayList;
 
 /**
@@ -27,6 +30,7 @@ public class Mesa implements IMesa {
         this.abierta = abierta;
         this.mozo = mozo;
         servicio = new ArrayList<Pedido>();
+        //this.oid = numero;
         
     }
 
@@ -95,13 +99,19 @@ public class Mesa implements IMesa {
         }
         if (!this.hayPedidosSinFinalizar()) {
             abierta = false;
+            this.guardarServicio();
             this.servicio.clear();
             this.cliente = null;
             Sistema.getInstancia().avisar(Sistema.Eventos.cerrarMesa);
         } else {
             throw new RestaurantException("La mesa tiene pedidos abiertos!");
         }
-
+    }
+    private void guardarServicio(){
+        Persistencia p = Persistencia.getInstancia();
+        MapeadorServicio ms = new MapeadorServicio();
+        ms.setM(this);
+        p.guardar(ms);
     }
 
     @Override
@@ -118,9 +128,17 @@ public class Mesa implements IMesa {
                 int cantidad = unP.getCantidad();
                 unP.getProducto().getUpp().agregarPedido(unP);
                 unP.getProducto().setStock(stock - cantidad);
+                this.actualizarStockDB(unP.getProducto());
                 Sistema.getInstancia().avisar(Sistema.Eventos.agregarPedido);
             }else throw new RestaurantException("Pedido con errores");
         }else throw new RestaurantException("La mesa esta cerrada");
+    }
+    
+    private void actualizarStockDB(Producto prod){
+        Persistencia p = Persistencia.getInstancia();
+        MapeadorProductos mp = new MapeadorProductos();
+        mp.setUnP(prod);
+        p.guardar(mp);
     }
 
     private boolean hayPedidosSinFinalizar() {

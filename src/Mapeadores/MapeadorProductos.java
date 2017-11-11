@@ -18,6 +18,10 @@ import java.util.ArrayList;
  */
 public class MapeadorProductos implements Mapeador{
     private Producto unP;
+
+    public void setUnP(Producto unP) {
+        this.unP = unP;
+    }
     
     @Override
     public int getOid() {

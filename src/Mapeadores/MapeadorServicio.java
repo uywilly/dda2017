@@ -20,6 +20,10 @@ public class MapeadorServicio implements Mapeador{
     
     private IMesa m;
 
+    public void setM(IMesa m) {
+        this.m = m;
+    }
+
     @Override
     public int getOid() {
         return m.getOid();
@@ -34,7 +38,7 @@ public class MapeadorServicio implements Mapeador{
     public ArrayList<String> getSqlInsert() {
         ArrayList<String> sqls = new ArrayList();        
         sqls.add(
-                "INSERT INTO mesa values (" + getOid() + "," + m.verNumero() +
+                "INSERT INTO mesas values (" + getOid() + "," + m.verNumero() +
                  ")"
         );
         generarSqlLineas(sqls);
@@ -74,7 +78,7 @@ public class MapeadorServicio implements Mapeador{
        Pedido p;
        for(int x=0;x<m.listarServicio().size();x++){
            p = m.listarServicio().get(x);
-           sqls.add( "INSERT INTO pedidos values (" + getOid() + "," +
+           sqls.add( "INSERT INTO pedidos values (" + getOid()+1 + "," +
                    m.verNumero() + ",'" + p.getNombre() + "',"+ 
                    p.getCantidad() + "," + p.getProducto().getOid() 
                    + "," + 1 +")"

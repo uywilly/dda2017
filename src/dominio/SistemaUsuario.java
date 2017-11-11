@@ -134,15 +134,6 @@ public class SistemaUsuario {
 
     public void cargarDatosPrueba() {
         // TODO Auto-generated method stub
-        /*String strConn = "jdbc:mysql://localhost/tarea";
-        BaseDatos bd = BaseDatos.getInstancia();
-        bd.conectar(strConn, "root", "root");
-        Persistencia p = new Persistencia();
-        MapeadorUPP mupp = new MapeadorUPP();
-        partidas = p.obtenerTodos(mp);
-        bd.desconectar();
-        */
-
         Mozo m1 = new Mozo("1", "1", "Juan Perez Mozo");
         Mesa mm1 = new Mesa(1,false,m1);  
         Mesa mm2 = new Mesa(2,false,m1);
