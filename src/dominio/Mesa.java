@@ -37,6 +37,7 @@ public class Mesa implements IMesa {
     public void setMozo(Mozo mozo) {
         this.mozo = mozo;
     }
+    
 
     @Override
     public int verNumero() {
@@ -138,6 +139,16 @@ public class Mesa implements IMesa {
             Sistema.getInstancia().avisar(Sistema.Eventos.clienteAgregado);
         }
         else throw new RestaurantException("cliente no valido");
+    }
+
+    @Override
+    public int getOid() {
+        return oid;
+    }
+
+    @Override
+    public void setOid(int oid) {
+        this.oid = oid;
     }
 
 }

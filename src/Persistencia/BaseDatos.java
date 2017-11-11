@@ -4,60 +4,85 @@
  * and open the template in the editor.
  */
 package Persistencia;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
- * @author william
+ * @author alumnoFI
  */
 public class BaseDatos {
-  private static BaseDatos instancia = new BaseDatos();
+    
+    private static BaseDatos instancia = new BaseDatos();
     private Connection conexion;
-    private Statement sentencia;
+    private Statement stmt;
 
     public static BaseDatos getInstancia() {
         return instancia;
     }
+
     private BaseDatos() {
     }
-    public void conectar(String url,String usuario,String pass){
+    public void conectar(String url,String u,String p){
         try {
-            conexion = DriverManager.getConnection(url, usuario, pass);
-            sentencia = conexion.createStatement();
+            conexion = DriverManager.getConnection(url, u, p);
+            stmt = conexion.createStatement();
         } catch (SQLException ex) {
-            System.out.println("Error al conectarse a la base:" + ex.getMessage());
+            System.out.println("Error al conectar:" + ex.getMessage());
         }
     }
     public void desconectar(){
         try {
-            sentencia.close();
             conexion.close();
         } catch (SQLException ex) {
         }
     }
-    public ResultSet consultar(String sql){
+    public int actualizar(String sql){
         try {
-            ResultSet rs = sentencia.executeQuery(sql);
-            return rs;
+            return stmt.executeUpdate(sql);
         } catch (SQLException ex) {
-            System.out.println("Error al consultar:" + ex.getMessage());
-            System.out.println("SQL=" + sql);
-            return null;
-        }
-    }
-    public int modificar(String sql){
-        try {
-            return sentencia.executeUpdate(sql);
-        } catch (SQLException ex) {
-            System.out.println("Error al modificar:" + ex.getMessage());
-            System.out.println("SQL=" + sql);
+            System.out.println("Error al actualizar:" + ex.getMessage());
+            System.out.println("SQL:" + sql);
             return -1;
         }
     }
-    
-  
+    public ResultSet consultar(String sql){
+        try {
+            return stmt.executeQuery(sql);
+        } catch (SQLException ex) {
+            System.out.println("Error al consultar:" + ex.getMessage());
+            System.out.println("SQL:" + sql);
+            return null;
+        }
+    }
+    public boolean transaccion(ArrayList<String> sqls){
+        try {
+            conexion.setAutoCommit(false); //begin T
+            for(String sql:sqls){
+                if(actualizar(sql)==-1){
+                    conexion.rollback();
+                    return false;
+                }
+            }
+            conexion.commit();
+            return true;
+                    
+        } catch (SQLException ex) {
+                System.out.println("Error en T:" + ex.getMessage());
+                return false;
+        }finally{
+            try {
+                conexion.setAutoCommit(true); //end T
+            } catch (SQLException ex) {               
+            }
+        }
+        
+    }
 }

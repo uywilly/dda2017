@@ -23,6 +23,10 @@ public class Pedido {
         this.finalizado = false;
     }
 
+    public int getOid() {
+        return oid;
+    }
+    
     public boolean isFinalizado() {
         return finalizado;
     }

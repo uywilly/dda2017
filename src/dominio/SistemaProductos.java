@@ -30,13 +30,18 @@ public class SistemaProductos {
 
     public void cargarDatosPrueba() {
         // TODO Auto-generated method stub
-        String strConn = "jdbc:mysql://localhost:8889/tarea";
-        BaseDatos bd = BaseDatos.getInstancia();
-        bd.conectar(strConn, "root", "root");
-        Persistencia p = new Persistencia();
+        Persistencia p = Persistencia.getInstancia();
         MapeadorProductos mp = new MapeadorProductos();
         productos = p.obtenerTodos(mp);
-        bd.desconectar();
+        
+        
+        //String strConn = "jdbc:mysql://localhost:8889/tarea";
+        //BaseDatos bd = BaseDatos.getInstancia();
+        //bd.conectar(strConn, "root", "root");
+        //Persistencia p = new Persistencia();
+        //MapeadorProductos mp = new MapeadorProductos();
+        //productos = p.obtenerTodos(mp);
+        //bd.desconectar();
     }
     
     

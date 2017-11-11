@@ -22,5 +22,6 @@ public interface IMesa {
     public void agregarPedido(Pedido unP)throws RestaurantException;
     public int calcularTotalServicio();
     public void asignarClienteSeleccionado(Cliente unC) throws RestaurantException;
-    
+    public int getOid();
+    public void setOid(int oid);
 }

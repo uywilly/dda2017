@@ -7,13 +7,12 @@ package Mapeadores;
 
 import Persistencia.Mapeador;
 import dominio.Cliente;
-import dominio.Producto;
-import dominio.Sistema;
 import dominio.TipoClienteComun;
 import dominio.TipoClienteDeLaCasa;
 import dominio.TipoClientePreferencial;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,7 +20,6 @@ import java.sql.SQLException;
  */
 public class MapeadorClientes implements Mapeador{
     private Cliente unC;
-
     public void setUnC(Cliente unC) {
         this.unC = unC;
     }
@@ -37,27 +35,32 @@ public class MapeadorClientes implements Mapeador{
     }
 
     @Override
-    public String[] getSqlInsert() {
+    public ArrayList<String> getSqlInsert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String[] getSqlUpdate() {
+    public ArrayList<String> getSqlUpdate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String[] getSqlDelete() {
+    public String getSqlDelete() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getSqlRestaurar() {
-        return "SELECT * FROM clientes where clientes.oid=" + unC.getOid();
+    public String getSqlSelect() {
+        return "SELECT * FROM clientes";
     }
 
     @Override
-    public void leer(ResultSet rs) throws SQLException {
+    public void crearNuevo() {
+        unC = new Cliente("","","","");
+    }
+
+    @Override
+    public void cargarDatos(ResultSet rs) throws SQLException {
         unC.setOid(rs.getInt("oid"));
         unC.setNombre(rs.getString("nombre"));
         unC.setClave(rs.getString("clave"));
@@ -77,16 +80,6 @@ public class MapeadorClientes implements Mapeador{
                 unC.setTipo(tcdc);
             break;
         }
-    }
-
-    @Override
-    public String getSqlSelect() {
-        return "SELECT * FROM clientes";
-    }
-
-    @Override
-    public void crearNuevo() {
-        unC = new Cliente("","","","");
     }
 
     @Override

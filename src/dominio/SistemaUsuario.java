@@ -169,13 +169,16 @@ public class SistemaUsuario {
         gestores.add(new Gestor("3", "3", "Jose Cardozo Gestor"));
         gestores.add(new Gestor("4", "4", "Pepe Guerra Gestor"));
         
-        String strConn = "jdbc:mysql://localhost:8889/tarea";
+        /*String strConn = "jdbc:mysql://localhost:8889/tarea";
         BaseDatos bd = BaseDatos.getInstancia();
         bd.conectar(strConn, "root", "root");
         Persistencia p = new Persistencia();
         MapeadorClientes mpc = new MapeadorClientes();
         clientes = p.obtenerTodos(mpc);
-        bd.desconectar();
+        bd.desconectar();*/
+        Persistencia p = Persistencia.getInstancia();
+        MapeadorClientes mpc = new MapeadorClientes();
+        clientes = p.obtenerTodos(mpc);
         
         /*
         Cliente c1 = new Cliente("Mike Client 1", "1", "Mike Cliente 1", "mike@mail.com");

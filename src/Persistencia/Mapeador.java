@@ -4,29 +4,33 @@
  * and open the template in the editor.
  */
 package Persistencia;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
- * @author william
+ * @author docenteFI
  */
 public interface Mapeador {
+
     public int getOid();
+
     public void setOid(int oid);
     
-    public String[] getSqlInsert();
+    public ArrayList<String> getSqlInsert();
 
-    public String[] getSqlUpdate();
+    public ArrayList<String> getSqlUpdate();
 
-    public String[] getSqlDelete();
-
-    public String getSqlRestaurar();
-
-    public void leer(ResultSet rs) throws SQLException;
+    public String getSqlDelete();
 
     public String getSqlSelect();
 
     public void crearNuevo();
 
+    public void cargarDatos(ResultSet rs) throws SQLException;
+
     public Object getObjeto();
+    
 }
