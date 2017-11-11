@@ -7,6 +7,7 @@ package Mapeadores;
 
 import Persistencia.Mapeador;
 import dominio.Producto;
+import dominio.Sistema;
 import dominio.UnidadProcesadora;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,18 +51,22 @@ public class MapeadorProductos implements Mapeador{
 
     @Override
     public String getSqlRestaurar() {
-        return "SELECT * FROM upp where upp.oid=" + unP.getOid();
+        return "SELECT * FROM productos where productos.oid=" + unP.getOid();
     }
 
     @Override
     public void leer(ResultSet rs) throws SQLException {
         unP.setOid(rs.getInt("oid"));
         unP.setNombre(rs.getString("nombre"));
+        unP.setStock(rs.getInt("stock"));
+        unP.setPrecioUni(rs.getInt("precioUni"));
+        unP.setCodigo(rs.getString("codigo"));
+        unP.setUpp(Sistema.getInstancia().buscarUPPoid(rs.getInt("upp")));
     }
 
     @Override
     public String getSqlSelect() {
-        return "SELECT * FROM upp";
+        return "SELECT * FROM productos";
     }
 
     @Override

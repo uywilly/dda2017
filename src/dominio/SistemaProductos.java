@@ -5,6 +5,7 @@
  */
 package dominio;
 
+import Mapeadores.MapeadorProductos;
 import Mapeadores.MapeadorUPP;
 import Persistencia.BaseDatos;
 import Persistencia.Persistencia;
@@ -33,8 +34,8 @@ public class SistemaProductos {
         BaseDatos bd = BaseDatos.getInstancia();
         bd.conectar(strConn, "root", "root");
         Persistencia p = new Persistencia();
-        MapeadorUPP mupp = new MapeadorUPP();
-        productos = p.obtenerTodos(mupp);
+        MapeadorProductos mp = new MapeadorProductos();
+        productos = p.obtenerTodos(mp);
         bd.desconectar();
     }
     

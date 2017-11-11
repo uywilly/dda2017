@@ -28,6 +28,12 @@ public class SistemaUnidadProcesadora {
     public ArrayList<UnidadProcesadora> getUnidadesProcesadoras() {
         return unidadesProcesadoras;
     }
+    public UnidadProcesadora buscarUPPoid(int aInt) {
+        for(UnidadProcesadora unaUPP : unidadesProcesadoras){
+            if(unaUPP.getOid()==aInt) return unaUPP;
+        }
+        return null;
+    }
 
     public ArrayList<Pedido> verPedidosPorUnidadProcesadora(UnidadProcesadora u) {
         ArrayList<Pedido> salida = new ArrayList<>();
@@ -76,6 +82,8 @@ public class SistemaUnidadProcesadora {
         bd.desconectar();
        
     }
+
+
     
 
 }

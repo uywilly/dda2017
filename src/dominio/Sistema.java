@@ -32,9 +32,10 @@ public class Sistema extends Observable {
     /////////////////fin del singleton///////////////// 
 
     public void cargarDatosPrueba() {
-        su.cargarDatosPrueba();
+        
         supp.cargarDatosPrueba();
         sp.cargarDatosPrueba();
+        su.cargarDatosPrueba();
         
         
     }
@@ -101,6 +102,9 @@ public class Sistema extends Observable {
     }
     public void rechazarTransferenciaEnProceso(Transferencia trans){
         st.rechazarTransferencia(trans); 
+    }
+    public UnidadProcesadora buscarUPPoid(int aInt) {
+        return supp.buscarUPPoid(aInt);
     }
     ////////////////acceso a listados////////////////
 
