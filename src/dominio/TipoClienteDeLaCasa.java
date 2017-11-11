@@ -11,8 +11,8 @@ package dominio;
  */
 public class TipoClienteDeLaCasa extends TipoCliente{
 
-    public TipoClienteDeLaCasa(String nombreTipo, int descuentoXproducto, int descuentoXtotal) {
-        super(nombreTipo, descuentoXproducto, descuentoXtotal);
+    public TipoClienteDeLaCasa(int descuentoXproducto, int descuentoXtotal) {
+        super("DE LA CASA", descuentoXproducto, descuentoXtotal);
     }
 
     

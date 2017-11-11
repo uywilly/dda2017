@@ -5,6 +5,7 @@
  */
 package dominio;
 
+import Mapeadores.MapeadorClientes;
 import Mapeadores.MapeadorUPP;
 import Persistencia.BaseDatos;
 import Persistencia.Persistencia;
@@ -141,35 +142,7 @@ public class SistemaUsuario {
         partidas = p.obtenerTodos(mp);
         bd.desconectar();
         */
-        
-        
-        
-        UnidadProcesadora u1 = new UnidadProcesadora("teatro");
-        UnidadProcesadora u2 = new UnidadProcesadora("cine");
-        Sistema.getInstancia().verUnidadesProcesadoras().add(u1);
-        Sistema.getInstancia().verUnidadesProcesadoras().add(u2);
-        
-        Producto prod1 = new Producto("coca cola", "111111", 6, u2, 100);
-        Producto prod2 = new Producto("fanta", "111112", 2, u2, 100);
-        Producto prod3 = new Producto("pomelo light", "111113", 1, u2, 100);
-        Producto prod4 = new Producto("spite", "111114", 10, u2, 100);
-        Producto prod5 = new Producto("pepsi", "111115", 8, u2, 90);
-        Producto prod6 = new Producto("chivito", "111116", 6, u1, 350);
-        Producto prod7 = new Producto("milanesa", "111117", 3, u1, 200);
-        Producto prod8 = new Producto("pancho", "111118", 1, u1,50);
-        Producto prod9 = new Producto("cafe", "111118", 5, u2,40);
-        Producto prod10 = new Producto("agua mineral", "111118", 5, u2,80);
-        Sistema.getInstancia().listarProductos().add(prod1);
-        Sistema.getInstancia().listarProductos().add(prod2);
-        Sistema.getInstancia().listarProductos().add(prod3);
-        Sistema.getInstancia().listarProductos().add(prod4);
-        Sistema.getInstancia().listarProductos().add(prod5);
-        Sistema.getInstancia().listarProductos().add(prod6);
-        Sistema.getInstancia().listarProductos().add(prod7);
-        Sistema.getInstancia().listarProductos().add(prod8);
-        Sistema.getInstancia().listarProductos().add(prod9);
-        Sistema.getInstancia().listarProductos().add(prod10);
-        
+
         Mozo m1 = new Mozo("1", "1", "Juan Perez Mozo");
         Mesa mm1 = new Mesa(1,false,m1);  
         Mesa mm2 = new Mesa(2,false,m1);
@@ -196,29 +169,38 @@ public class SistemaUsuario {
         gestores.add(new Gestor("3", "3", "Jose Cardozo Gestor"));
         gestores.add(new Gestor("4", "4", "Pepe Guerra Gestor"));
         
+        String strConn = "jdbc:mysql://localhost:8889/tarea";
+        BaseDatos bd = BaseDatos.getInstancia();
+        bd.conectar(strConn, "root", "root");
+        Persistencia p = new Persistencia();
+        MapeadorClientes mpc = new MapeadorClientes();
+        clientes = p.obtenerTodos(mpc);
+        bd.desconectar();
         
+        /*
         Cliente c1 = new Cliente("Mike Client 1", "1", "Mike Cliente 1", "mike@mail.com");
-        TipoClienteComun tcc = new TipoClienteComun("cc", 100, 0);
+        TipoClienteComun tcc = new TipoClienteComun(100, 0);
         c1.setTipo(tcc);
         
         Cliente c2 = new Cliente("Sue Client 2", "2", "Sue Client 2", "sue@mail.com");
-        TipoClientePreferencial tcp = new TipoClientePreferencial("preferencial", 100, 5);
+        TipoClientePreferencial tcp = new TipoClientePreferencial(100, 5);
         c2.setTipo(tcp);
 
         Cliente c3 = new Cliente("Mary  Client 3", "3", "Mary  Client 3", "mary@mail.com");
-        TipoClienteDeLaCasa tcdc = new TipoClienteDeLaCasa("de la casa", 0, 500);
+        TipoClienteDeLaCasa tcdc = new TipoClienteDeLaCasa(0, 500);
         
         Sistema.getInstancia().verClientesRegistrados().add(c1);
         Sistema.getInstancia().verClientesRegistrados().add(c2);
         Sistema.getInstancia().verClientesRegistrados().add(c3);
-        
+        */
+        /*
         try {
             tcc.setProductoConDescuento(prod9);
             tcp.setProductoConDescuento(prod10);
         } catch (RestaurantException ex) {
             Logger.getLogger(SistemaUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        */
         
         
         /*Pedido pp1 = new Pedido(0, prod8);     

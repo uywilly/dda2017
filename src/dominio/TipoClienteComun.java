@@ -11,8 +11,8 @@ package dominio;
  */
 public class TipoClienteComun extends TipoCliente{   
     
-    public TipoClienteComun(String nombreTipo, int descuentoXproducto, int descuentoXtotal) {
-        super(nombreTipo, descuentoXproducto, descuentoXtotal);
+    public TipoClienteComun(int descuentoXproducto, int descuentoXtotal) {
+        super("COMUN", descuentoXproducto, descuentoXtotal);
         
     }
     @Override

@@ -11,8 +11,8 @@ package dominio;
  */
 public class TipoClientePreferencial extends TipoCliente{
 
-    public TipoClientePreferencial(String nombreTipo, int descuentoXproducto, int descuentoXtotal) {
-        super(nombreTipo, descuentoXproducto, descuentoXtotal);
+    public TipoClientePreferencial(int descuentoXproducto, int descuentoXtotal) {
+        super("PREFERENCIAL", descuentoXproducto, descuentoXtotal);
     }
 
     @Override
