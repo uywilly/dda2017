@@ -134,8 +134,9 @@ public class VentanaPrincipalMozo extends javax.swing.JFrame implements VistaMoz
     }
     @Override
     public void mostrarMensajeTransferenciaRechazada() {
-        ventanaMensaje.dispose();
+        //
         JOptionPane.showMessageDialog(this, "No se ha aceptado la transferencia!");
+        if(ventanaMensaje != null){ ventanaMensaje.dispose();}
         ventanaMensaje = null;
         
     }

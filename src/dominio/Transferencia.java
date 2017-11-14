@@ -118,7 +118,7 @@ public class Transferencia implements Runnable{
     
     @Override
     public void run() {
-        while (tiempo > 0 && correr) {
+        while (tiempo >= 0 && correr) {
             try {
                 Sistema.getInstancia().avisar(Sistema.Eventos.tiempo);
                 hilo.sleep(1000);
