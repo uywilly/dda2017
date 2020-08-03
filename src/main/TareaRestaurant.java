@@ -17,7 +17,7 @@ public class TareaRestaurant {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here ---- le agrego unas cosas mas 
+        // TODO code application logic here comments added 
         VentanaInicio v = new VentanaInicio();
     	v.setVisible(true);
     }
